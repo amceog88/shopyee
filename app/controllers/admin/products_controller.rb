@@ -1,17 +1,52 @@
-class Admin::ProductsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_admin
-  
+class Admin::ProductsController < Admin::BaseController
+
+  before_action :set_product, only:[:show, :edit, :update, :destroy]
+
   def index
+    @products = Product.all
+  end
+
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+    if @product.save
+      flash[:notice] = "product was successfully created"
+      redirect_to admin_products_path
+    else
+      flash.now[:alert] = "product was failed to create"
+      render :new
+    end
+  end
+
+
+  def update
+    if @product.update(product_params)
+      redirect_to admin_product_path(@product)
+      flash[:notice] = "product was successfully updated"
+    else
+      render :edit
+      flash[:alert] = "product was failed to update"
+    end
+  end
+
+  def destroy
+    @product.destroy
+    redirect_to admin_products_path
+    flash[:alert] = "product was deleted"
   end
 
 
 private
 
-  def authenticate_admin
-    unless current_user.admin?
-      flash[:alert] = "Not allow!"
-      redirect_to root_path
-    end
+  def product_params
+    params.require(:product).permit(:name, :price, :image, :description)
   end
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
 end

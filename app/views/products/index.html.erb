@@ -1,1 +1,12 @@
 <h1>shopyee前台</h1>
+
+<% @products.each do |product| %>
+  <div class="product-box">
+    <%= link_to product_path(product) do %>
+      <%= image_tag product.image %><br>
+      <%= product.name %><br>
+    <% end %>
+    $<%= product.price %>
+  </div>
+<% end %>
+
