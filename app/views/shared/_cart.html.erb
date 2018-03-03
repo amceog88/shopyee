@@ -7,7 +7,11 @@
       <h4><%= item.product.name %></h4>
       $ <%= item.product.price %><br>
       <div class="cart-item-adjust">
-        <%= item.quantity %>個
+        <div class="cart-item-quantity">
+          <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post %>
+          <%= item.quantity %>個
+          <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post %>
+        </div>
         <%= button_to "取消", remove_from_cart_product_path(item.product), class: "btn btn-default btn-xs" %>
       </div>
     </div>
