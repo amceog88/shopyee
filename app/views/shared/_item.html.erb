@@ -1,0 +1,15 @@
+<div class="cart-item product-<%= item.product.id %>">
+  <%#= image_tag item.product.image %>
+  <div class="cart-item-info">
+    <h4><%= item.product.name %></h4>
+    $ <%= item.product.price %><br>
+    <div class="cart-item-adjust">
+      <div class="cart-item-quantity">
+        <%= link_to '+', adjust_item_product_path(item.product, type: "add"), method: :post %>
+        <span class="cart-<%= item.product.id %>-qty" ><%= item.quantity %></span>個
+        <%= link_to '-', adjust_item_product_path(item.product, type: "substract"), method: :post %>
+      </div>
+      <%= button_to "取消", remove_from_cart_product_path(item.product), class: "btn btn-default btn-xs", remote: true %>
+    </div>
+  </div>
+</div>

@@ -4,14 +4,15 @@
     <div class="col-md-9">
       <% @products.each do |product| %>
         <div class="col-md-3">
-          <div class="product-box">
+          <div class="product-box product_<%= product.id %>">
             <%= link_to product_path(product) do %>
               <div class="image-frame"><%= image_tag product.image, width: "120px" %></div><br>
               <h4><%= product.name %></h4><br>
             <% end %>
-              <div class="product-description"><%= truncate(product.description, length: 40) %></div>
-              <p>$<%= product.price %></p>
-              <%= button_to "加入購物車", add_to_cart_product_path(product) , class: "btn btn-default btn-xs"%>
+            <div class="product-description"><%= truncate(product.description, length: 40) %>
+            </div>
+            <p>$<%= product.price %></p>
+            <%= button_to "Add to Cart", add_to_cart_product_path(product) , class: "btn btn-default btn-xs", remote: true %>
           </div>
         </div>
       <% end %>
