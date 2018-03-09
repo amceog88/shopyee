@@ -5,7 +5,7 @@
       <h3><%= @product.name %></h3>
       <h5>$ <%= @product.price %></h5>
       <%= simple_format @product.description %>
-      <%= button_to 'Add to Cart', add_to_cart_product_path(@product) , class: "btn btn-default" , remote: true%>
+      <%= button_to '加入購物車', add_to_cart_product_path(@product) , class: "btn btn-default" , remote: true%>
     </div>
     <div class="col-md-3 my-cart">
       <%= render "shared/cart" %>

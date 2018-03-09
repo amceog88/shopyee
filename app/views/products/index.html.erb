@@ -12,7 +12,7 @@
             <div class="product-description"><%= truncate(product.description, length: 40) %>
             </div>
             <p>$<%= product.price %></p>
-            <%= button_to "Add to Cart", add_to_cart_product_path(product) , class: "btn btn-default btn-xs", remote: true %>
+            <%= button_to "加入購物車", add_to_cart_product_path(product) , class: "btn btn-default btn-xs", remote: true %>
           </div>
         </div>
       <% end %>
